@@ -1,16 +1,19 @@
 import React from 'react';
+import axios from 'axios';
 
 import WeightData from './WeightData'
 import DateData from './DateData'
+
+import { ToastContainer, toast } from 'react-toastify';
 
 class WeightTracker extends React.Component {
     constructor(){
         super()
         this.state = {
-        weight: [],
-        date: [],
-        weightInput: '',
-        dateInput: ''
+           weight: [],
+           date: [],
+           weightInput: '',
+           dateInput: ''
         }
         
 
@@ -18,8 +21,12 @@ class WeightTracker extends React.Component {
 
     handleWeightChange = (value) => {
         this.setState({
-            weightInput: value     
+            weightInput: value
         })
+        
+        // weight: [...this.state.weight, this.state.weightInput ],
+        //     weightInput: ''
+            
     }
 
     handleDateChange = (value) => {
@@ -29,12 +36,17 @@ class WeightTracker extends React.Component {
     }
 
     handleWeightClick = () => {
-        this.setState({
-            weight: [...this.state.weight, this.state.weightInput ],
-            weightInput: ''
-        }) 
+        console.log(this.state.weightInput)    
+        axios.post('/api/weight', {type: this.state.weightInput}).then(response =>{
+                this.setState({
+                    weight: response.data,
+                    weightInput: '' 
+            })
+        })
+            
+    } 
          
-    }
+
 
     handleDateClick = () => {
         this.setState({

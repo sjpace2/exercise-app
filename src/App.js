@@ -100,8 +100,10 @@ class App extends Component {
     }
    
     generateExerciseJSX = (exercises) => {
-      return exercises.map(exercise => <Single key={exercise.id} delete={this.removeAnExercise} exercises={exercise} />);
+      return exercises.map(exercise => <Single key={exercise.id} delete={this.removeAnExercise} exercises={exercise} changer = {this.replaceLift} />);
     } 
+
+    
 
     handleEditChange = (value) =>{
       this.setState({
@@ -115,8 +117,8 @@ class App extends Component {
       })
     }
 
-    replaceLift = (type) =>{
-      axios.put(`/api/exercises/${type}`).then(response => {
+    replaceLift = (id, updates) =>{ 
+      axios.put(`/api/exercises/${id}`, updates).then(response => {
         this.setState({ 
         exerciseList: response.data
       }) 
@@ -124,27 +126,29 @@ class App extends Component {
       
     
   }
-    generateLiftChangeJSX = (lifts) =>{
-      return lifts.map((lift) => <LineEdit key = { lift.id } customLift = { this.state.newLift } modify = {this.state.replaceLift} lifts = {lift} /> )
-    }
+    // generateLiftChangeJSX = (lifts) =>{ //happens when button clicked to compare the two lifts
+    //   return lifts.map((lift) => <LineEdit key = { lift.id } customLift = { this.state.newLift } modify = {this.state.replaceLift} lifts = {lift} editLift = {this.state.editLift} /> )
+      
   
   render() {
     
     return (
 
-      <div className="App">
-      
-          <h4><Titles/></h4>
-          <h4><Form getWeather={this.getWeather}/></h4>
-          <h4><Weather 
-            temperature={this.state.temperature}
-            city={this.state.city}
+      <div className="App" background='background.jpeg'>
+          <header>
+            <h4 className='titles'><Titles/></h4>
+            <h4 className='form'><Form getWeather={this.getWeather}/></h4>
+            <h4><Weather 
+              temperature={this.state.temperature}
+              city={this.state.city}
             country={this.state.country}
             humidity={this.state.humidity}
             description={this.state.description}
             error={this.state.error}
 
           /></h4>
+          </header>
+          <section>
           
           <h1>Exercise Plan</h1>
           <ToastContainer />
@@ -156,18 +160,21 @@ class App extends Component {
           
           </div>
           <div>
-            <input value={this.state.editLift} onChange = {e => this.handleEditChange(e.target.value)} type="text"    />
-            <input onChange = {e => this.handleNewLift(e.target.value)} type="text"    />
-            <button onClick = { this.replaceLift } >Edit Lift</button>
+            {/* <input value={this.state.editLift} onChange = {e => this.handleEditChange(e.target.value)} type="text"    /> */}
+            {/* <input onChange = {e => this.handleNewLift(e.target.value)} type="text"    /> */}
+            {/* <button onClick = { ()=>{this.generateLiftChangeJSX(this.state.exerciseList)} } >Edit Lift</button> */}
           </div>
-          <div>
-            <button onClick = { this.getExercises } >Standard Barbell Lifts</button>
-          </div>
+           <div>
+            <button onClick = { this.getExercises } >Retrieve workout</button>
+           </div>
           
-          {this.generateExerciseJSX(this.state.exerciseList)}
-          {this.generateLiftChangeJSX(this.state.exerciseList)}
-          <div><WeightTracker /></div>
-
+           {this.generateExerciseJSX(this.state.exerciseList)}
+           {/* {this.generateLiftChangeJSX(this.state.exerciseList)} */}
+          
+          </section>
+          <footer>
+              <div><WeightTracker /></div>
+          </footer>
       </div>
     );
   }

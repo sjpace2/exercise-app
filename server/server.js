@@ -13,6 +13,11 @@ app.use(bodyParser.json())
 let exercises = require('./exercises')
 let id = 6
 
+let weight = require('./weight')
+let id2 = 1
+let date = require('./date')
+
+
 app.get('/api/exercises', (req, res) => {
     res.send(exercises)
 })
@@ -26,15 +31,39 @@ app.post('/api/exercises', (req, res) => {
     res.send(exercises)
 })
 
-app.put('/api/exercises/:type', (req, res) => {
-    
-    for(let i=0; i<exercises.length; i++){
-        if (exercises[i].type !== req.params.type){
-            exercises[i].type = req.body.type
-        }
-        
-    }return res.send(exercises)
+app.post('/api/weight', (req, res) => {
+    const { type } = req.body
+    const newWeight = { type, id2 }
+    id2+=1
+    weight.push(newWeight)
+    res.send(weight)
+
+
 })
+
+app.post('/api/date', (req,res) =>{
+    date.push(req.body)
+    res.send(date)
+})
+
+app.put('/api/exercises/:id', (req, res) => {
+   console.log('this is req.body:', req.body)
+   console.log('this is req.params:', req.params)
+   for(let i=0; i<exercises.length; i++){
+    console.log(exercises[i].id)  
+    if (exercises[i].id === Number(req.params.id)) {
+        exercises[i].type = req.body.type
+    }
+    // if(req.body.type = true) {
+        
+    //     console.log(exercises[exercises[i].id + exercises.length].type)
+    //     exercises[exercises[i].id + exercises.length].type = req.body.type
+
+    //    }
+   }
+   res.send(exercises)
+})
+
 
 app.delete('/api/exercises/:id', (req, res) => {
     for(let i=0; i<exercises.length; i++){
