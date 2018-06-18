@@ -9,7 +9,12 @@
 }
 
 .Add button {
-  background-color: red;
+  background-color: rgb(54, 77, 133);
+  color: white;
+}
+
+.Add {
+  display: flex;
 }
 
 header {
@@ -18,9 +23,29 @@ header {
   height: 100px;
 }
 
-div {
-  display: flex;
+.explanParent {
+  position: flex;
+  justify-content: center;
+  
+
 }
+
+exTitle {
+  position: flex;
+  justify-content: center;
+
+}
+
+.explanChild {
+  position: flex;
+  justify-content: center;
+}
+
+.display {
+  position: flex;
+}
+
+
 
 .titles {
   color: rgb(216, 216, 216);
@@ -46,8 +71,10 @@ section {
 
 section h1 {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: rgb(74, 0, 0);
+  color: white;
   padding: 20px;
+  font-family: 'Nothing you could do';
+  font-size: 50px;
 
 }
 
@@ -64,6 +91,73 @@ footer div {
 }
 
 .dispExercises {
-  color: red;
+  color: rgb(53, 92, 177);
+  
 }
+
+.exercise {
+  position: flex;
+  justify-content: center;
+  text-align: center;
+  display: inline-block;
+
+}
+
+.singleDisplay > h4 {
+  display:inline;
+}
+
+.Page {
+  text-align: center;
+  
+}
+
+
+.weightTrackerChild {
+  position: flex;
+}
+
+.weightTrackerChild > h1 {
+  font-family: 'Nothing you could do';
+  font-size: 30px;
+}
+
+.weightDisplay{
+  display: flex;
+  width: 200px;
+  margin: 0 auto;
+  justify-content: space-between;
+}
+
+.weightDisplay > h4 {
+  display: inline;
+  position: flex;
+  flex-wrap: wrap;
+  margin: 0;
+
+}
+
+.dateDisplay > h4 {
+  display: inline;
+  margin: 0;
+}
+
+footer {
+  position: flex;
+  flex-wrap: wrap;
+}
+
+.weight {
+  position: flex;
+  flex-wrap: wrap;
+  display: inline-block;
+}
+
+.Page {
+  background-image: url('./images/background.jpg');
+  color: white;
+  height: 1750px;
+  width: 100vw;
+}
+
 

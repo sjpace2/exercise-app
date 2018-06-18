@@ -126,16 +126,15 @@ class App extends Component {
       
     
   }
-    // generateLiftChangeJSX = (lifts) =>{ //happens when button clicked to compare the two lifts
-    //   return lifts.map((lift) => <LineEdit key = { lift.id } customLift = { this.state.newLift } modify = {this.state.replaceLift} lifts = {lift} editLift = {this.state.editLift} /> )
+  
       
   
   render() {
     
     return (
 
-      <div className="App" background='background.jpeg'>
-          <header>
+      <div className="Page">
+        <header className="weather">
             <h4 className='titles'><Titles/></h4>
             <h4 className='form'><Form getWeather={this.getWeather}/></h4>
             <h4><Weather 
@@ -147,34 +146,33 @@ class App extends Component {
             error={this.state.error}
 
           /></h4>
-          </header>
-          <section>
+        </header>
           
-          <h1>Exercise Plan</h1>
-          <ToastContainer />
-          <div className="Add">
-             <input value = {this.state.input} onChange = { e => this.handleChange(e.target.value) } type="text"/>
+        <section className="exercise">
+            <div className="explanParent">
+              <h1 className="exTitle">Exercise Plan</h1>
+              <div className="explanChild">
+                   <ToastContainer />
+                    <div className="Add">
+                      <input value = {this.state.input} onChange = { e => this.handleChange(e.target.value) } type="text"/>
             
             
-             <button onClick = {this.handleClick} >Add to Standard Lifts</button>
+              <button onClick = {this.handleClick} >Add an Exercise</button>
           
-          </div>
-          <div>
-            {/* <input value={this.state.editLift} onChange = {e => this.handleEditChange(e.target.value)} type="text"    /> */}
-            {/* <input onChange = {e => this.handleNewLift(e.target.value)} type="text"    /> */}
-            {/* <button onClick = { ()=>{this.generateLiftChangeJSX(this.state.exerciseList)} } >Edit Lift</button> */}
-          </div>
-           <div>
-            <button onClick = { this.getExercises } >Retrieve workout</button>
-           </div>
-          
-           {this.generateExerciseJSX(this.state.exerciseList)}
-           {/* {this.generateLiftChangeJSX(this.state.exerciseList)} */}
-          
-          </section>
-          <footer>
-              <div><WeightTracker /></div>
-          </footer>
+               </div>
+              </div>
+              </div>
+            <div>
+                <button onClick = { this.getExercises } >Retrieve workout</button>
+            </div>
+            <div className = "display">
+                {this.generateExerciseJSX(this.state.exerciseList)}
+            </div>
+        </section>
+        
+        <footer className="weight">
+              <div className = "weightTrack"><WeightTracker /></div>
+        </footer>
       </div>
     );
   }

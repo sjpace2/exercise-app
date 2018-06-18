@@ -42,7 +42,9 @@ app.post('/api/weight', (req, res) => {
 })
 
 app.post('/api/date', (req,res) =>{
-    date.push(req.body)
+    const { type } = req.body
+    const newDate = { type }
+    date.push( newDate )
     res.send(date)
 })
 
@@ -54,12 +56,7 @@ app.put('/api/exercises/:id', (req, res) => {
     if (exercises[i].id === Number(req.params.id)) {
         exercises[i].type = req.body.type
     }
-    // if(req.body.type = true) {
-        
-    //     console.log(exercises[exercises[i].id + exercises.length].type)
-    //     exercises[exercises[i].id + exercises.length].type = req.body.type
-
-    //    }
+   
    }
    res.send(exercises)
 })

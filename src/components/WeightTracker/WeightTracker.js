@@ -6,6 +6,8 @@ import DateData from './DateData'
 
 import { ToastContainer, toast } from 'react-toastify';
 
+
+
 class WeightTracker extends React.Component {
     constructor(){
         super()
@@ -23,9 +25,6 @@ class WeightTracker extends React.Component {
         this.setState({
             weightInput: value
         })
-        
-        // weight: [...this.state.weight, this.state.weightInput ],
-        //     weightInput: ''
             
     }
 
@@ -36,6 +35,7 @@ class WeightTracker extends React.Component {
     }
 
     handleWeightClick = () => {
+        if(!this.state.weightInput) return
         console.log(this.state.weightInput)    
         axios.post('/api/weight', {type: this.state.weightInput}).then(response =>{
                 this.setState({
@@ -49,11 +49,23 @@ class WeightTracker extends React.Component {
 
 
     handleDateClick = () => {
-        this.setState({
-            date: [...this.state.date, this.state.dateInput],
-            dateInput: ''
+        if(!this.state.dateInput) return
+        axios.post('/api/date', {type: this.state.dateInput}).then(response =>{
+
+            this.setState({
+                date: response.data,
+                dateInput: ''
+
+        })
+        
         })
     }
+
+    // generateExerciseJSX = (exercises) => {
+    //     return exercises.map(exercise => <Single key={exercise.id} delete={this.removeAnExercise} exercises={exercise} changer = {this.replaceLift} />);
+    //   } 
+    
+  
 
     render(){
         let filteredWeight = this.state.weight.map((element, index)=>{
@@ -66,18 +78,18 @@ class WeightTracker extends React.Component {
         })
         
         return(
-            <div>
+            <div className="weightTrackerChild">
                 <h1>Weight Tracker</h1>
-                <input value={this.state.value} placeholder='weight' onChange = {e=>this.handleWeightChange(e.target.value)} type="text"/>
+                <input value={this.state.weightInput} placeholder='weight' onChange = {e=>this.handleWeightChange(e.target.value)} type="text"/>
                 <button onClick = { this.handleWeightClick } >Add Weight</button>
-                <input value={this.state.value} placeholder='date' onChange = {e=>this.handleDateChange(e.target.value)} type="text"/>
+                <input value={this.state.dateInput} placeholder='date' onChange = {e=>this.handleDateChange(e.target.value)} type="text"/>
                 <button onClick = { this.handleDateClick } >Add Date</button>
                 
-
-                <br/>
-                {filteredWeight}
-                {filteredDate}
-                
+                    <br/>
+                   <div className = "weightDisplay">
+                     <div> {filteredWeight} </div>
+                      <div>{filteredDate}   </div>
+                   </div>
             </div>
         )
     }

@@ -3,8 +3,8 @@ import React from 'react';
 export default function DateData (props){
 return(
     
-    <div>
-        <p>{props.data}</p>
+    <div className ="dateDisplay">
+        <h4>{props.data.type}</h4>
     </div>  
         
     )
