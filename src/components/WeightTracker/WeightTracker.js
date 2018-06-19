@@ -80,6 +80,7 @@ class WeightTracker extends React.Component {
         return(
             <div className="weightTrackerChild">
                 <h1>Weight Tracker</h1>
+                
                 <input value={this.state.weightInput} placeholder='weight' onChange = {e=>this.handleWeightChange(e.target.value)} type="text"/>
                 <button onClick = { this.handleWeightClick } >Add Weight</button>
                 <input value={this.state.dateInput} placeholder='date' onChange = {e=>this.handleDateChange(e.target.value)} type="text"/>

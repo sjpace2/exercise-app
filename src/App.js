@@ -151,6 +151,7 @@ class App extends Component {
         <section className="exercise">
             <div className="explanParent">
               <h1 className="exTitle">Exercise Plan</h1>
+              add an exercise below in the box on the left...<br/><span className="span">click on an individual exercise to delete, or edit entry in the box to the right. <br/>After refreshing page, click retrieve workout button to fetch stored exercises</span>
               <div className="explanChild">
                    <ToastContainer />
                     <div className="Add">
